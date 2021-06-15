@@ -60,7 +60,7 @@ ImagePicker.openPicker({
 });
 ```
 
-**Android: The prop 'cropping' has been known to cause videos not to be display in the gallery on Android. Please do not set cropping to true when selecting videos.**
+**Android: The prop 'cropping' has been known to cause videos not to be displayed in the gallery on Android. Please do not set cropping to true when selecting videos.**
 
 
 ### Select from camera 
@@ -126,7 +126,8 @@ ImagePicker.clean().then(() => {
 | cropperActiveWidgetColor (android only) |       string (default `"#424242"`)       | When cropping image, determines ActiveWidget color. |
 | cropperStatusBarColor (android only)    |        string (default `#424242`)        | When cropping image, determines the color of StatusBar. |
 | cropperToolbarColor (android only)      |        string (default `#424242`)        | When cropping image, determines the color of Toolbar. |
-| freeStyleCropEnabled (android only)      |        bool (default false)        | Enables user to apply custom rectangle area for cropping |
+| cropperToolbarWidgetColor (android only)      |        string (default `darker orange`)        | When cropping image, determines the color of Toolbar text and buttons. |
+| freeStyleCropEnabled      |        bool (default false)        | Enables user to apply custom rectangle area for cropping |
 | cropperToolbarTitle                     |        string (default `Edit Photo`)     | When cropping image, determines the title of Toolbar. |
 | cropperCircleOverlay                    |           bool (default false)           | Enable or disable circular cropping mask. |
 | disableCropperColorSetters (android only)|           bool (default false)           | When cropping image, disables the color setters for cropping library. |
@@ -143,7 +144,7 @@ ImagePicker.clean().then(() => {
 | mediaType                               |           string (default any)           | Accepted mediaType for image selection, can be one of: 'photo', 'video', or 'any' |
 | showsSelectedCount (ios only)           |           bool (default true)            | Whether to show the number of selected assets |
 | sortOrder (ios only)           |           string (default 'none', supported values: 'asc', 'desc', 'none')            | Applies a sort order on the creation date on how media is displayed within the albums/detail photo views when opening the image picker |
-| forceJpg (ios only)           |           bool (default false)            | Whether to convert photos to JPG. This will also convert any Live Photo into its JPG representation |
+| forceJpg            |           bool (default false)            | Whether to convert photos to JPG. This will also convert any Live Photo into its JPG representation |
 | showCropGuidelines (android only)       |           bool (default true)            | Whether to show the 3x3 grid on top of the image during cropping |
 | showCropFrame (android only)       |           bool (default true)            | Whether to show crop frame during cropping |
 | hideBottomControls (android only)       |           bool (default false)           | Whether to display bottom controls       |
@@ -153,6 +154,7 @@ ImagePicker.clean().then(() => {
 
 #### Smart Album Types (ios)
 
+NOTE: Some of these types may not be available on all iOS versions. Be sure to check this to avoid issues.
 ```
 ['PhotoStream', 'Generic', 'Panoramas', 'Videos', 'Favorites', 'Timelapses', 'AllHidden', 'RecentlyAdded', 'Bursts', 'SlomoVideos', 'UserLibrary', 'SelfPortraits', 'Screenshots', 'DepthEffect', 'LivePhotos', 'Animated', 'LongExposure']
 ```
@@ -169,6 +171,7 @@ ImagePicker.clean().then(() => {
 | height                    | number | Selected image height                    |
 | mime                      | string | Selected image MIME type (image/jpeg, image/png) |
 | size                      | number | Selected image size in bytes             |
+| duration                  | number | Video duration time in milliseconds      |
 | data                      | base64 | Optional base64 selected file representation |
 | exif                      | object | Extracted exif data from image. Response format is platform specific |
 | cropRect                  | object | Cropped image rectangle (width, height, x, y)    |
@@ -259,6 +262,18 @@ android {
     ...
 }
 ```
+
+- Minimum Gradle version if you are using react-native-image-crop-picker >= 0.35.0
+
+```
+3.3.3
+3.4.3
+3.5.4
+3.6.4
+4.0.1
+```
+
+Reference for more details https://github.com/ivpusic/react-native-image-crop-picker/issues/1406
 
 - [Optional] If you want to use camera picker in your project, add following to `app/src/main/AndroidManifest.xml`
   - `<uses-permission android:name="android.permission.CAMERA"/>`
